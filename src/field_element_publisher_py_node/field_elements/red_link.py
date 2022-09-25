@@ -6,7 +6,7 @@ import geometry_msgs.msg
 import rospy
 
 
-def publish_red_link(broadcaster):
+def publish(broadcaster):
     static_transformStamped = geometry_msgs.msg.TransformStamped()
     static_transformStamped.header.stamp = rospy.Time.now()
     static_transformStamped.header.frame_id = "map"
