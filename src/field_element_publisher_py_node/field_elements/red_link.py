@@ -6,7 +6,9 @@ import geometry_msgs.msg
 import rospy
 
 
-def publish(broadcaster):
+def get_transforms():
+    returned_transforms = []
+
     static_transformStamped = geometry_msgs.msg.TransformStamped()
     static_transformStamped.header.stamp = rospy.Time.now()
     static_transformStamped.header.frame_id = "map"
@@ -21,5 +23,6 @@ def publish(broadcaster):
     static_transformStamped.transform.rotation.y = quat[1]
     static_transformStamped.transform.rotation.z = quat[2]
     static_transformStamped.transform.rotation.w = quat[3]
+    returned_transforms.append(static_transformStamped)
 
-    broadcaster.sendTransform(static_transformStamped)
+    return returned_transforms

@@ -12,8 +12,10 @@ if __name__ == '__main__':
     rospy.init_node(NODE_NAME)
     broadcaster = tf2_ros.StaticTransformBroadcaster()
 
-    red_link.publish(broadcaster)
-    blue_link.publish(broadcaster)
-    hub_link.publish(broadcaster)
+    transform_list = []
+    transform_list.extend(red_link.get_transforms())
+    transform_list.extend(blue_link.get_transforms())
+    transform_list.extend(hub_link.get_transforms())
 
+    broadcaster.sendTransform(transform_list)
     rospy.spin()
