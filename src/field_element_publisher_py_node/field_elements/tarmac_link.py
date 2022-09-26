@@ -26,9 +26,9 @@ def compute_tarmac_transform(name, angle):
 def get_transforms():
     returned_transforms = []
 
-    returned_transforms.append(compute_tarmac_transform("red_tarmac_1_transform", float(225)))
-    returned_transforms.append(compute_tarmac_transform("red_tarmac_2_transform", float(135)))
-    returned_transforms.append(compute_tarmac_transform("blue_tarmac_1_transform", float(45)))
-    returned_transforms.append(compute_tarmac_transform("blue_tarmac_2_transform", float(315)))
+    returned_transforms.append(compute_tarmac_transform("tarmac_red_1_link", float(225)))
+    returned_transforms.append(compute_tarmac_transform("tarmac_red_2_link", float(135)))
+    returned_transforms.append(compute_tarmac_transform("tarmac_blue_1_link", float(45)))
+    returned_transforms.append(compute_tarmac_transform("tarmac_blue_2_link", float(315)))
 
     return returned_transforms
