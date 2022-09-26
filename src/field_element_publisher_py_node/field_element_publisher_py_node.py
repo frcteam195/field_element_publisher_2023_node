@@ -20,6 +20,7 @@ if __name__ == '__main__':
     transform_list.extend(terminal_link.get_transforms())
     transform_list.extend(tarmac_link.get_transforms())
     transform_list.extend(auto_link.get_transforms())
+    transform_list.extend(ball_link.get_transforms())
 
     broadcaster.sendTransform(transform_list)
     rospy.spin()

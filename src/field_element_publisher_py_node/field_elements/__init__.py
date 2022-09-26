@@ -2,6 +2,7 @@
 
 __all__ = [
     "auto_link",
+    "ball_link",
     "blue_link",
     "hangar_link",
     "hub_link",
