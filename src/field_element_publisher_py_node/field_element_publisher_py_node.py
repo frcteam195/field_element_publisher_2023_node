@@ -6,7 +6,7 @@ NODE_NAME = 'field_element_publisher_py_node'
 roslib.load_manifest(NODE_NAME)
 import rospy
 import tf2_ros
-from field_elements import red_link, blue_link, hub_link
+from field_elements import *
 
 if __name__ == '__main__':
     rospy.init_node(NODE_NAME)
@@ -16,6 +16,9 @@ if __name__ == '__main__':
     transform_list.extend(red_link.get_transforms())
     transform_list.extend(blue_link.get_transforms())
     transform_list.extend(hub_link.get_transforms())
+    transform_list.extend(hangar_link.get_transforms())
+    transform_list.extend(terminal_link.get_transforms())
+    transform_list.extend(tarmac_link.get_transforms())
 
     broadcaster.sendTransform(transform_list)
     rospy.spin()

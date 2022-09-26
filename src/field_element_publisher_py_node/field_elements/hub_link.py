@@ -53,6 +53,7 @@ def get_transforms():
     red_hub_transform.transform.rotation.w = quat[3]
     returned_transforms.append(red_hub_transform)
 
+
     blue_hub_transform = geometry_msgs.msg.TransformStamped()
     blue_hub_transform.header.stamp = rospy.Time.now()
     blue_hub_transform.header.frame_id = "hub_link"
@@ -61,6 +62,21 @@ def get_transforms():
     blue_hub_transform.transform.translation.y = float(0)
     blue_hub_transform.transform.translation.z = float(0)
     quat == tf.transformations.quaternion_from_euler(float(0),float(0),float(180.0 * constants.DEGREES_TO_RADIANS))
+    blue_hub_transform.transform.rotation.x = quat[0]
+    blue_hub_transform.transform.rotation.y = quat[1]
+    blue_hub_transform.transform.rotation.z = quat[2]
+    blue_hub_transform.transform.rotation.w = quat[3]
+    returned_transforms.append(blue_hub_transform)
+
+
+    blue_hub_transform = geometry_msgs.msg.TransformStamped()
+    blue_hub_transform.header.stamp = rospy.Time.now()
+    blue_hub_transform.header.frame_id = "hub_link"
+    blue_hub_transform.child_frame_id = "hub_full_height"
+    blue_hub_transform.transform.translation.x = float(0)
+    blue_hub_transform.transform.translation.y = float(0)
+    blue_hub_transform.transform.translation.z = float(2.64)
+    quat == tf.transformations.quaternion_from_euler(float(0),float(0),float(0))
     blue_hub_transform.transform.rotation.x = quat[0]
     blue_hub_transform.transform.rotation.y = quat[1]
     blue_hub_transform.transform.rotation.z = quat[2]
