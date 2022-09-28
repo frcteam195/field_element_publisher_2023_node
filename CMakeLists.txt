@@ -50,9 +50,10 @@ catkin_package(
 # )
 
 file(GLOB_RECURSE python_sources CONFIGURE_DEPENDS
-     "${PROJECT_SOURCE_DIR}/src/*.py"
+     "${PROJECT_SOURCE_DIR}/scripts/*"
 )
 
+catkin_python_setup()
 catkin_install_python(PROGRAMS ${python_sources} DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 # install(TARGETS listener talker

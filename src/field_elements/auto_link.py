@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import tf
 import tf2_ros
 import geometry_msgs.msg
 import rospy
-import constants
+import field_elements.constants as constants
 import copy
 
 def mirror_to_blue(transform):

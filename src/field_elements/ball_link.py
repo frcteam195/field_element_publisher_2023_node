@@ -1,13 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import tf
 import tf2_ros
 import geometry_msgs.msg
 import rospy
-import constants
+import field_elements.constants as constants
 import copy
 import math
-import math_helper
+import field_elements.math_helper as math_helper
 
 def mirror_to_blue(transform):
     blue_transform = copy.deepcopy(transform)
