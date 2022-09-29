@@ -4,10 +4,10 @@ import tf
 import tf2_ros
 import geometry_msgs.msg
 import rospy
-import field_elements.constants as constants
+import field_element_publisher_py_node.field_elements.constants as constants
 import copy
 import math
-import field_elements.math_helper as math_helper
+import field_element_publisher_py_node.field_elements.math_helper as math_helper
 
 def mirror_to_blue(transform):
     blue_transform = copy.deepcopy(transform)

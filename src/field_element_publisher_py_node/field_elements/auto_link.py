@@ -4,7 +4,7 @@ import tf
 import tf2_ros
 import geometry_msgs.msg
 import rospy
-import field_elements.constants as constants
+import field_element_publisher_py_node.field_elements.constants as constants
 import copy
 
 def mirror_to_blue(transform):
