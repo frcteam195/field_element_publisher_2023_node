@@ -22,9 +22,6 @@ def ros_func():
     rate = rospy.Rate(20)
     # Put your code in the appropriate sections in this if statement/while loop
     while not rospy.is_shutdown():
-        rospy.loginfo ("test")
-        print ('test')
-
         base = Marker()
         base.scale.x = 30 * constants.INCHES_TO_METERS
         base.scale.y = 30 * constants.INCHES_TO_METERS
@@ -93,10 +90,10 @@ def ros_func():
         cone_high.ns = "cones"
         cone_high.id = 4
 
-        rospy.loginfo(base)
-        rospy.loginfo(cube_mid)
-        rospy.loginfo(cone_mid)
-        rospy.loginfo(cone_high)
+        # rospy.loginfo(base)
+        # rospy.loginfo(cube_mid)
+        # rospy.loginfo(cone_mid)
+        # rospy.loginfo(cone_high)
         
         elements = [base, cube_mid, cone_mid]
         pub.publish(elements[0])
