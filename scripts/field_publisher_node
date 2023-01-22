@@ -2,10 +2,10 @@
 
 # Import required Python code.
 import roslib
-NODE_NAME = 'field_element_publisher_py_node'
+NODE_NAME = 'field_publisher_node'
 roslib.load_manifest(NODE_NAME)
 import rospy
 import tf2_ros
-import field_element_publisher_py_node.main as main
+import field_publisher_node.main as main
 if __name__ == '__main__':
     main.ros_main(NODE_NAME)
