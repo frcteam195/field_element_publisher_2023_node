@@ -17,7 +17,7 @@ def get_auto_1_transforms():
 
     auto_1_starting_position = geometry_msgs.msg.TransformStamped()
     auto_1_starting_position.header.stamp = rospy.Time.now()
-    auto_1_starting_position.header.frame_id = "auto_1_starting_position"
+    auto_1_starting_position.header.frame_id = "map"
     auto_1_starting_position.child_frame_id = "auto_1_cone_mid_link"
     auto_1_starting_position.transform.translation.x = float(0)
     auto_1_starting_position.transform.translation.y = float(0)
