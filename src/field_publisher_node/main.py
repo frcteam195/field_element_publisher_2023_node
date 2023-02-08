@@ -121,7 +121,7 @@ class FieldPublisherNode():
         divider = Cube(f"{alliance_color}_dividers", 0, f"{alliance_color}_divider0")
         divider.set_scale(Scale(alliance_inverter * -1.38, -0.089, -0.08))
         divider_transform = Transform()
-        divider_transform.linear.z = -0.08/2
+        divider_transform.linear.z = 0.08/2
         divider.set_transform(divider_transform)
         divider.set_color(Color(172.0/255.0, 180.0/255.0, 196.0/255.0, 1.0))
         divider.publish()
@@ -136,7 +136,7 @@ class FieldPublisherNode():
         divider = Cube(f"{alliance_color}_dividers", 1, f"{alliance_color}_divider1")
         divider.set_scale(Scale(alliance_inverter * -1.38, -0.089, -0.08))
         divider_transform = Transform()
-        divider_transform.linear.z = -0.08/2
+        divider_transform.linear.z = 0.08/2
         divider.set_transform(divider_transform)
         divider.set_color(Color(172.0/255.0, 180.0/255.0, 196.0/255.0, 1.0))
         divider.publish()
@@ -152,7 +152,7 @@ class FieldPublisherNode():
             divider = Cube(f"{alliance_color}_dividers", i, f"{alliance_color}_divider{i}")
             divider.set_scale(Scale(alliance_inverter * -1.38, -0.089, -0.08))
             divider_transform = Transform()
-            divider_transform.linear.z = -0.08/2
+            divider_transform.linear.z = 0.08/2
             divider.set_transform(divider_transform)
             divider.set_color(Color(172.0/255.0, 180.0/255.0, 196.0/255.0, 1.0))
             divider.publish()
@@ -167,7 +167,7 @@ class FieldPublisherNode():
         divider = Cube(f"{alliance_color}_dividers", 9, f"{alliance_color}_divider9")
         divider.set_scale(Scale(alliance_inverter * -1.38, -0.089, -0.08))
         divider_transform = Transform()
-        divider_transform.linear.z = -0.08/2
+        divider_transform.linear.z = 0.08/2
         divider.set_transform(divider_transform)
         divider.set_color(Color(172.0/255.0, 180.0/255.0, 196.0/255.0, 1.0))
         divider.publish()
