@@ -51,7 +51,7 @@ class FieldPublisherNode():
         transform_link.set_transform(transform)
         transform_link.publish()
 
-        wall = Cube("Walls", 1, "Wall")
+        wall = Cube("Wall")
         wall.set_scale(Scale(10.68, 0.0254, 0.51))
         wall_transform = Transform()
         wall_transform.linear.z = 0.51/2
@@ -66,7 +66,7 @@ class FieldPublisherNode():
         transform_link.set_transform(transform)
         transform_link.publish()
 
-        wall = Cube("Walls", 2, "FarWall")
+        wall = Cube("FarWall")
         wall.set_scale(Scale(16.54, 0.0254, 0.51))
         wall_transform = Transform()
         wall_transform.linear.z = 0.51/2
@@ -97,7 +97,7 @@ class FieldPublisherNode():
         transform_link.set_transform(transform)
         transform_link.publish()
 
-        drive_station = Cube(f"{alliance_color}_driver_station", 1, f"{alliance_color}_drive_station_base")
+        drive_station = Cube(f"{alliance_color}_drive_station_base")
         drive_station.set_scale(Scale(alliance_inverter * -0.0254, -5.4991, -1.9812))
         drive_station_transform = Transform()
         drive_station_transform.linear.x = alliance_inverter * -0.0127
@@ -117,7 +117,7 @@ class FieldPublisherNode():
         transform_link.set_transform(transform)
         transform_link.publish()
 
-        divider = Cube(f"{alliance_color}_dividers", 0, f"{alliance_color}_divider0")
+        divider = Cube(f"{alliance_color}_divider0")
         divider.set_scale(Scale(alliance_inverter * -1.38, -0.089, -0.08))
         divider_transform = Transform()
         divider_transform.linear.z = 0.08/2
@@ -132,7 +132,7 @@ class FieldPublisherNode():
         transform_link.set_transform(transform)
         transform_link.publish()
 
-        divider = Cube(f"{alliance_color}_dividers", 1, f"{alliance_color}_divider1")
+        divider = Cube(f"{alliance_color}_divider1")
         divider.set_scale(Scale(alliance_inverter * -1.38, -0.089, -0.08))
         divider_transform = Transform()
         divider_transform.linear.z = 0.08/2
@@ -148,7 +148,7 @@ class FieldPublisherNode():
             transform_link.set_transform(transform)
             transform_link.publish()
 
-            divider = Cube(f"{alliance_color}_dividers", i, f"{alliance_color}_divider{i}")
+            divider = Cube(f"{alliance_color}_divider{i}")
             divider.set_scale(Scale(alliance_inverter * -1.38, -0.089, -0.08))
             divider_transform = Transform()
             divider_transform.linear.z = 0.08/2
@@ -163,7 +163,7 @@ class FieldPublisherNode():
         transform_link.set_transform(transform)
         transform_link.publish()
 
-        divider = Cube(f"{alliance_color}_dividers", 9, f"{alliance_color}_divider9")
+        divider = Cube(f"{alliance_color}_divider9")
         divider.set_scale(Scale(alliance_inverter * -1.38, -0.089, -0.08))
         divider_transform = Transform()
         divider_transform.linear.z = 0.08/2
@@ -179,7 +179,7 @@ class FieldPublisherNode():
             transform_link.set_transform(transform)
             transform_link.publish()
 
-            cube_node = Cube(f"{alliance_color}_cube_nodes", 2 * i, f"{alliance_color}_cube_node{i}")
+            cube_node = Cube(f"{alliance_color}_cube_node{i}")
             cube_node.set_scale(Scale(alliance_inverter * -0.43, -0.46, -0.508))
             cube_node_transform = Transform()
             cube_node_transform.linear.z = 0.508/2
@@ -187,7 +187,7 @@ class FieldPublisherNode():
             cube_node.set_color(Color(1.0, 1.0, 1.0, 0.5))
             cube_node.publish()
 
-            cube_node = Cube(f"{alliance_color}_cube_nodes", 2 * i + 1, f"{alliance_color}_cube_node{i}")
+            cube_node = Cube(f"{alliance_color}_cube_node{i}")
             cube_node.set_scale(Scale(alliance_inverter * -0.43, -0.46, -0.889))
             cube_node_transform = Transform()
             cube_node_transform.linear.x = alliance_inverter * -0.4318
@@ -197,7 +197,7 @@ class FieldPublisherNode():
             cube_node.publish()
 
             # Middle Left Cone Node
-            cone_node = Cylinder(f"{alliance_color}_cone_nodes", 4 * i, f"{alliance_color}_cube_node{i}")
+            cone_node = Cylinder(f"{alliance_color}_cube_node{i}")
             cone_node.set_scale(Scale(alliance_inverter * -0.042164, -0.042164, -0.8636))
             cone_node_transform = Transform()
             cone_node_transform.linear.y = -0.5588
@@ -207,7 +207,7 @@ class FieldPublisherNode():
             cone_node.publish()
 
             # High Right Cone Node
-            cone_node = Cylinder(f"{alliance_color}_cone_nodes", 4 * i + 1, f"{alliance_color}_cube_node{i}")
+            cone_node = Cylinder(f"{alliance_color}_cube_node{i}")
             cone_node.set_scale(Scale(alliance_inverter * -0.042164, -0.042164, -0.8636))
             cone_node_transform = Transform()
             cone_node_transform.linear.y = 0.5588
@@ -217,7 +217,7 @@ class FieldPublisherNode():
             cone_node.publish()
 
             # High Left Cone Node
-            cone_node = Cylinder(f"{alliance_color}_cone_nodes", 4 * i + 2, f"{alliance_color}_cube_node{i}")
+            cone_node = Cylinder(f"{alliance_color}_cube_node{i}")
             cone_node.set_scale(Scale(alliance_inverter * -0.042164, -0.042164, -1.1684))
             cone_node_transform = Transform()
             cone_node_transform.linear.x = alliance_inverter * -0.4318
@@ -228,7 +228,7 @@ class FieldPublisherNode():
             cone_node.publish()
 
             # taller right cylinder
-            cone_node = Cylinder(f"{alliance_color}_cone_nodes", 4 * i + 3, f"{alliance_color}_cube_node{i}")
+            cone_node = Cylinder(f"{alliance_color}_cube_node{i}")
             cone_node.set_scale(Scale(alliance_inverter * -0.042164, -0.042164, -1.1684))
             cone_node_transform = Transform()
             cone_node_transform.linear.x = alliance_inverter * -0.4318
@@ -246,7 +246,7 @@ class FieldPublisherNode():
         transform_link.set_transform(transform)
         transform_link.publish()
 
-        charge_station = Cube(f"{alliance_color}_charge_station", 0, f"{alliance_color}_charge_station")
+        charge_station = Cube(f"{alliance_color}_charge_station")
         charge_station.set_scale(Scale(alliance_inverter * -1.933775, -2.4384, -0.231775))
         charge_station_transform = Transform()
         charge_station_transform.linear.z = 0.231775/2
@@ -270,7 +270,7 @@ class FieldPublisherNode():
             transform_link.set_transform(transform)
             transform_link.publish()
 
-            double_substation = Cube(f"{alliance_color}double_substation", i, f"{alliance_color}double_substation{i}")
+            double_substation = Cube(f"{alliance_color}double_substation{i}")
             double_substation.set_scale(Scale(alliance_inverter * -0.36, -2.44, -1.98))
             double_substation_transform = Transform()
             double_substation_transform.linear.z = 1.98/2
@@ -286,7 +286,7 @@ class FieldPublisherNode():
             transform_link.set_transform(transform)
             transform_link.publish()
 
-            single_substation = Cube(f"{alliance_color}single_substation", i, f"{alliance_color}single_substation{i}")
+            single_substation = Cube(f"{alliance_color}single_substation{i}")
             single_substation.set_scale(Scale(alliance_inverter * -2.68, -0.69, -2.08))
             single_substation_transform = Transform()
             single_substation_transform.linear.z = 2.08/2
@@ -321,7 +321,7 @@ class FieldPublisherNode():
         transform = Transform()
         transform.linear.z = 0.33/2
 
-        cone = Cylinder(namespace, shape_id, base_frame)
+        cone = Cylinder(base_frame)
         cone.set_scale(Scale(-0.21, -0.21, -0.33))
         cone.set_color(Color(252.0/255.0, 186.0/255.0, 3.0/255.0, 1.0))
         cone.set_transform(transform)
@@ -334,7 +334,7 @@ class FieldPublisherNode():
         transform = Transform()
         transform.linear.z = 0.24/2
 
-        cube = Cube(namespace, shape_id, base_frame)
+        cube = Cube(base_frame)
         cube.set_scale(Scale(-0.25, -0.24, -0.24))
         cube.set_color(Color(107.0/255.0, 3.0/255.0, 252.0/255.0, 1.0))
         cube.set_transform(transform)
