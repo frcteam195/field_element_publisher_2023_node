@@ -4,7 +4,7 @@ import typing
 import rospy
 
 from ck_utilities_py_node.rviz_shapes import Color, Cube, Cylinder, Scale
-from ck_utilities_py_node.transform_links import Transform, TransformLink
+from ck_utilities_py_node.transform_links import Transform, StaticTransformLink
 from frc_robot_utilities_py_node.RobotStatusHelperPy import Alliance
 
 
@@ -28,60 +28,59 @@ class FieldPublisherNode():
         """
         rate = rospy.Rate(20)
 
+        # Maps
+        transform = Transform()
+        transform_link = StaticTransformLink("red_map", "map")
+        transform_link.set_transform(transform)
+        transform_link.publish()
+
+        transform = Transform()
+        transform.linear.x = 16.54175
+        transform_link = StaticTransformLink("blue_map", "map")
+        transform_link.set_transform(transform)
+        transform_link.publish()
+
+        self.build_community(Alliance.RED)
+        self.build_community(Alliance.BLUE)
+
+        # Walls
+        transform = Transform()
+        transform.linear.x = 8.27
+        transform.linear.y = -8.02
+        transform_link = StaticTransformLink("Wall", "map")
+        transform_link.set_transform(transform)
+        transform_link.publish()
+
+        wall = Cube("Walls", 1, "Wall")
+        wall.set_scale(Scale(10.68, 0.0254, 0.51))
+        wall_transform = Transform()
+        wall_transform.linear.z = 0.51/2
+        wall.set_transform(wall_transform)
+        wall.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
+        wall.publish()
+
+        # Longer Walls
+        transform = Transform()
+        transform.linear.x = 8.27
+        transform_link = StaticTransformLink("FarWall", "map")
+        transform_link.set_transform(transform)
+        transform_link.publish()
+
+        wall = Cube("Walls", 2, "FarWall")
+        wall.set_scale(Scale(16.54, 0.0254, 0.51))
+        wall_transform = Transform()
+        wall_transform.linear.z = 0.51/2
+        wall.set_transform(wall_transform)
+        wall.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
+        wall.publish()
+
+        self.build_loading_zone(Alliance.RED)
+        self.build_loading_zone(Alliance.BLUE)
+
+        self.build_starting_game_pieces(Alliance.RED, ["Cube", "Cone", "Cube", "Cube"])
+        self.build_starting_game_pieces(Alliance.BLUE, ["Cone", "Cube", "Cube", "Cone"])
+
         while not rospy.is_shutdown():
-
-            # Maps
-            transform = Transform()
-            transform_link = TransformLink("red_map", "map")
-            transform_link.set_transform(transform)
-            transform_link.publish()
-
-            transform = Transform()
-            transform.linear.x = 16.54175
-            transform_link = TransformLink("blue_map", "map")
-            transform_link.set_transform(transform)
-            transform_link.publish()
-
-            self.build_community(Alliance.RED)
-            self.build_community(Alliance.BLUE)
-
-            # Walls
-            transform = Transform()
-            transform.linear.x = 8.27
-            transform.linear.y = -8.02
-            transform_link = TransformLink("Wall", "map")
-            transform_link.set_transform(transform)
-            transform_link.publish()
-
-            wall = Cube("Walls", 1, "Wall")
-            wall.set_scale(Scale(10.68, 0.0254, 0.51))
-            wall_transform = Transform()
-            wall_transform.linear.z = 0.51/2
-            wall.set_transform(wall_transform)
-            wall.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
-            wall.publish()
-
-            # Longer Walls
-            transform = Transform()
-            transform.linear.x = 8.27
-            transform_link = TransformLink("FarWall", "map")
-            transform_link.set_transform(transform)
-            transform_link.publish()
-
-            wall = Cube("Walls", 2, "FarWall")
-            wall.set_scale(Scale(16.54, 0.0254, 0.51))
-            wall_transform = Transform()
-            wall_transform.linear.z = 0.51/2
-            wall.set_transform(wall_transform)
-            wall.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
-            wall.publish()
-
-            self.build_loading_zone(Alliance.RED)
-            self.build_loading_zone(Alliance.BLUE)
-
-            self.build_starting_game_pieces(Alliance.RED, ["Cube", "Cone", "Cube", "Cube"])
-            self.build_starting_game_pieces(Alliance.BLUE, ["Cone", "Cube", "Cube", "Cone"])
-
             rate.sleep()
 
     def build_community(self, alliance: Alliance):
@@ -94,7 +93,7 @@ class FieldPublisherNode():
         # Driver Station
         transform = Transform()
         transform.linear.y = -2.74955
-        transform_link = TransformLink(f"{alliance_color}_drive_station_base", f"{alliance_color}_map")
+        transform_link = StaticTransformLink(f"{alliance_color}_drive_station_base", f"{alliance_color}_map")
         transform_link.set_transform(transform)
         transform_link.publish()
 
@@ -114,7 +113,7 @@ class FieldPublisherNode():
         transform = Transform()
         transform.linear.x = alliance_inverter * 0.7012
         transform.linear.y = -2.7051
-        transform_link = TransformLink(f"{alliance_color}_divider0", f"{alliance_color}_drive_station_base")
+        transform_link = StaticTransformLink(f"{alliance_color}_divider0", f"{alliance_color}_drive_station_base")
         transform_link.set_transform(transform)
         transform_link.publish()
 
@@ -129,7 +128,7 @@ class FieldPublisherNode():
         # Second Node Divider
         transform = Transform()
         transform.linear.y = 0.74295
-        transform_link = TransformLink(f"{alliance_color}_divider1", f"{alliance_color}_divider0")
+        transform_link = StaticTransformLink(f"{alliance_color}_divider1", f"{alliance_color}_divider0")
         transform_link.set_transform(transform)
         transform_link.publish()
 
@@ -145,7 +144,7 @@ class FieldPublisherNode():
         for i in range(2, 9):
             transform = Transform()
             transform.linear.y = 0.5588
-            transform_link = TransformLink(f"{alliance_color}_divider{i}", f"{alliance_color}_divider{i - 1}")
+            transform_link = StaticTransformLink(f"{alliance_color}_divider{i}", f"{alliance_color}_divider{i - 1}")
             transform_link.set_transform(transform)
             transform_link.publish()
 
@@ -160,7 +159,7 @@ class FieldPublisherNode():
         # Last Node Divider
         transform = Transform()
         transform.linear.y = 0.74295
-        transform_link = TransformLink(f"{alliance_color}_divider9", f"{alliance_color}_divider8")
+        transform_link = StaticTransformLink(f"{alliance_color}_divider9", f"{alliance_color}_divider8")
         transform_link.set_transform(transform)
         transform_link.publish()
 
@@ -176,7 +175,7 @@ class FieldPublisherNode():
         for i in range(0, 3):
             transform = Transform()
             transform.linear.y = 0.2794
-            transform_link = TransformLink(f"{alliance_color}_cube_node{i}", f"{alliance_color}_divider{i* 3 + 1}")
+            transform_link = StaticTransformLink(f"{alliance_color}_cube_node{i}", f"{alliance_color}_divider{i* 3 + 1}")
             transform_link.set_transform(transform)
             transform_link.publish()
 
@@ -243,7 +242,7 @@ class FieldPublisherNode():
         transform = Transform()
         transform.linear.x = alliance_inverter * 4.8498
         transform.linear.y = -2.727452
-        transform_link = TransformLink(f"{alliance_color}_charge_station", f"{alliance_color}_map")
+        transform_link = StaticTransformLink(f"{alliance_color}_charge_station", f"{alliance_color}_map")
         transform_link.set_transform(transform)
         transform_link.publish()
 
@@ -267,7 +266,7 @@ class FieldPublisherNode():
             transform = Transform()
             transform.linear.y = -(5.4991 + 1.22)
             transform.linear.x = alliance_inverter * 0.18
-            transform_link = TransformLink(f"{alliance_color}double_substation{i}", f"{alliance_color}_map")
+            transform_link = StaticTransformLink(f"{alliance_color}double_substation{i}", f"{alliance_color}_map")
             transform_link.set_transform(transform)
             transform_link.publish()
 
@@ -283,7 +282,7 @@ class FieldPublisherNode():
             transform = Transform()
             transform.linear.y = -(5.4991 + 2.44 + 0.36)
             transform.linear.x = alliance_inverter * 1.7
-            transform_link = TransformLink(f"{alliance_color}single_substation{i}", f"{alliance_color}_map")
+            transform_link = StaticTransformLink(f"{alliance_color}single_substation{i}", f"{alliance_color}_map")
             transform_link.set_transform(transform)
             transform_link.publish()
 
@@ -306,7 +305,7 @@ class FieldPublisherNode():
             transform = Transform()
             transform.linear.x = alliance_inverter * 7.07
             transform.linear.y = -0.9327 - (number * 1.2192)
-            transform_link = TransformLink(f"{alliance_color}_game_piece_{number}", f"{alliance_color}_map")
+            transform_link = StaticTransformLink(f"{alliance_color}_game_piece_{number}", f"{alliance_color}_map")
             transform_link.set_transform(transform)
             transform_link.publish()
 
