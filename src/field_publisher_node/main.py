@@ -171,6 +171,22 @@ class FieldPublisherNode():
         divider.set_color(Color(172.0/255.0, 180.0/255.0, 196.0/255.0, 1.0))
         divider.publish()
 
+        #Barriers
+
+        transform = Transform()
+        transform.linear.x = alliance_inverter * 1.81
+        transform_link = StaticTransformLink(f"{alliance_color}_barrier", f"{alliance_color}_divider0")
+        transform_link.set_transform(transform)
+        transform_link.publish()
+
+        barrier  = Cube(f"{alliance_color}_barrier")
+        barrier.set_scale(Scale(alliance_inverter * -2.24, -0.013, -0.31))
+        barrier_transform = Transform()
+        barrier_transform.linear.z = 0.31/2
+        barrier.set_transform(barrier_transform)
+        barrier.set_color(Color(172.0/255.0, 180.0/255.0, 196.0/255.0, 1.0))
+        barrier.publish()
+
         # Grids
         for i in range(0, 3):
             transform = Transform()
@@ -254,6 +270,9 @@ class FieldPublisherNode():
         charge_station.set_color(Color(205.0/255.0, 205.0/255.0, 205.0/255.0, 0.75))
         charge_station.publish()
 
+        
+
+
     def build_loading_zone(self, alliance: Alliance):
         """
         Builds the loading zone for the specified alliance in RViz.
@@ -265,34 +284,97 @@ class FieldPublisherNode():
         for i in range(0, 2):
             transform = Transform()
             transform.linear.y = -(5.4991 + 1.22)
-            transform.linear.x = alliance_inverter * 0.18
-            transform_link = StaticTransformLink(f"{alliance_color}double_substation{i}", f"{alliance_color}_map")
+            transform.linear.x = alliance_inverter * -0.0127
+            transform_link = StaticTransformLink(f"{alliance_color}double_substation_back{i}", f"{alliance_color}_map")
             transform_link.set_transform(transform)
             transform_link.publish()
 
-            double_substation = Cube(f"{alliance_color}double_substation{i}")
-            double_substation.set_scale(Scale(alliance_inverter * -0.36, -2.44, -1.98))
-            double_substation_transform = Transform()
-            double_substation_transform.linear.z = 1.98/2
-            double_substation.set_transform(double_substation_transform)
-            double_substation.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
-            double_substation.publish()
+            double_substation_back = Cube(f"{alliance_color}double_substation_back{i}")
+            double_substation_back.set_scale(Scale(alliance_inverter * -0.0254, -2.44, -1.98))
+            double_substation_back_transform = Transform()
+            double_substation_back_transform.linear.z = 1.98/2
+            double_substation_back.set_transform(double_substation_back_transform)
+            double_substation_back.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
+            double_substation_back.publish()
+
+            
+            transform = Transform()
+            transform.linear.y = -(5.4991 + 1.22)
+            transform.linear.x = alliance_inverter * 0.18
+            transform_link = StaticTransformLink(f"{alliance_color}double_substation_front{i}", f"{alliance_color}_map")
+            transform_link.set_transform(transform)
+            transform_link.publish()
+
+            double_substation_front = Cube(f"{alliance_color}double_substation_front{i}")
+            double_substation_front.set_scale(Scale(alliance_inverter * -0.3346-0.0254, -2.44, -0.95))
+            double_substation_front_transform = Transform()
+            double_substation_front_transform.linear.z = 0.95/2
+            double_substation_front.set_transform(double_substation_front_transform)
+            double_substation_front.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
+            double_substation_front.publish()
+
+            transform = Transform()
+            transform.linear.y = -(5.4991 + 1.22)
+            transform.linear.x = alliance_inverter * 0.18
+            transform.linear.z = 0.95
+            transform_link = StaticTransformLink(f"{alliance_color}double_substation_portal{i}", f"{alliance_color}_map")
+            transform_link.set_transform(transform)
+            transform_link.publish()
+
+            double_substation_portal = Cube(f"{alliance_color}double_substation_portal{i}")
+            double_substation_portal.set_scale(Scale(alliance_inverter * -0.3346-0.0254, -0.7, -0.48895))
+            double_substation_portal_transform = Transform()
+            double_substation_portal_transform.linear.z = 0.48895/2
+            double_substation_portal.set_transform(double_substation_portal_transform)
+            double_substation_portal.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
+            double_substation_portal.publish()
+
 
         for i in range(0, 2):
             transform = Transform()
             transform.linear.y = -(5.4991 + 2.44 + 0.36)
-            transform.linear.x = alliance_inverter * 1.7
-            transform_link = StaticTransformLink(f"{alliance_color}single_substation{i}", f"{alliance_color}_map")
+            transform.linear.x = alliance_inverter * (1.025675 + 0.3346+0.0254)
+            transform_link = StaticTransformLink(f"{alliance_color}single_substation_wall{i}", f"{alliance_color}_map")
             transform_link.set_transform(transform)
             transform_link.publish()
 
-            single_substation = Cube(f"{alliance_color}single_substation{i}")
-            single_substation.set_scale(Scale(alliance_inverter * -2.68, -0.69, -2.08))
-            single_substation_transform = Transform()
-            single_substation_transform.linear.z = 2.08/2
-            single_substation.set_transform(single_substation_transform)
-            single_substation.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
-            single_substation.publish()
+            single_substation_wall = Cube(f"{alliance_color}single_substation_wall{i}")
+            single_substation_wall.set_scale(Scale(alliance_inverter * -2.05135, -0.69, -2.08))
+            single_substation_wall_transform = Transform()
+            single_substation_wall_transform.linear.z = 2.08/2
+            single_substation_wall.set_transform(single_substation_wall_transform)
+            single_substation_wall.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
+            single_substation_wall.publish()
+
+            transform = Transform()
+            transform.linear.y = -(5.4991 + 2.44 + 0.36)
+            transform.linear.x = alliance_inverter * (0.314325 + 2.05135 + 0.3346+0.0254)
+            transform_link = StaticTransformLink(f"{alliance_color}single_substation_bottom{i}", f"{alliance_color}_map")
+            transform_link.set_transform(transform)
+            transform_link.publish()
+
+            single_substation_bottom = Cube(f"{alliance_color}single_substation_bottom{i}")
+            single_substation_bottom.set_scale(Scale(alliance_inverter * -0.62865, -0.69, -0.69))
+            single_substation_bottom_transform = Transform()
+            single_substation_bottom_transform.linear.z = 0.69/2
+            single_substation_bottom.set_transform(single_substation_bottom_transform)
+            single_substation_bottom.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
+            single_substation_bottom.publish()
+
+            transform = Transform()
+            transform.linear.y = -(5.4991 + 2.44 + 0.36)
+            transform.linear.x = alliance_inverter * (0.314325 + 2.05135 + 0.3346+0.0254)
+            transform_link = StaticTransformLink(f"{alliance_color}single_substation_top{i}", f"{alliance_color}_map")
+            transform_link.set_transform(transform)
+            transform_link.publish()
+
+            single_substation_top = Cube(f"{alliance_color}single_substation_top{i}")
+            single_substation_top.set_scale(Scale(alliance_inverter * -0.62865, -0.69, -0.94))
+            single_substation_top_transform = Transform()
+            single_substation_top_transform.linear.z = 0.94/2 + 0.69 + 0.46
+            single_substation_top.set_transform(single_substation_top_transform)
+            single_substation_top.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
+            single_substation_top.publish()
 
     def build_starting_game_pieces(self, alliance: Alliance, game_pieces: typing.List[str]):
         """
