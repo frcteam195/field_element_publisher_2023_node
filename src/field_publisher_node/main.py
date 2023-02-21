@@ -3,7 +3,7 @@ import typing
 
 import rospy
 
-from ck_utilities_py_node.rviz_shapes import Color, Cube, Cylinder, Scale
+from ck_utilities_py_node.rviz_shapes import Color, Cube, Cylinder, Scale, Arrow
 from ck_utilities_py_node.transform_links import Transform, StaticTransformLink
 from frc_robot_utilities_py_node.RobotStatusHelperPy import Alliance
 
@@ -42,6 +42,15 @@ class FieldPublisherNode():
 
         self.build_community(Alliance.RED)
         self.build_community(Alliance.BLUE)
+
+        #limelight fusion marker
+        limelight_marker = Arrow("limelight_result")
+        limelight_marker.set_scale(Scale(1.0, 0.25, 0.25))
+        limelight_marker.set_color(Color(.196, .804, .196, 1.0))
+        limelight_transform = Transform()
+        limelight_transform.linear.x = -0.5
+        limelight_marker.set_transform(limelight_transform)
+        limelight_marker.publish()
 
         # Walls
         transform = Transform()
@@ -270,7 +279,7 @@ class FieldPublisherNode():
         charge_station.set_color(Color(205.0/255.0, 205.0/255.0, 205.0/255.0, 0.75))
         charge_station.publish()
 
-        
+
 
 
     def build_loading_zone(self, alliance: Alliance):
@@ -297,7 +306,7 @@ class FieldPublisherNode():
             double_substation_back.set_color(Color(150.0/255.0, 155.0/255.0, 184.0/255.0, 1.0))
             double_substation_back.publish()
 
-            
+
             transform = Transform()
             transform.linear.y = -(5.4991 + 1.22)
             transform.linear.x = alliance_inverter * 0.18
