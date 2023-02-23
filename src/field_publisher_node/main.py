@@ -183,7 +183,7 @@ class FieldPublisherNode():
         #Barriers
 
         transform = Transform()
-        transform.linear.x = alliance_inverter * 1.81
+        transform.linear.x = alliance_inverter * (1.81 - 0.2588006)
         transform_link = StaticTransformLink(f"{alliance_color}_barrier", f"{alliance_color}_divider0")
         transform_link.set_transform(transform)
         transform_link.publish()
@@ -260,12 +260,12 @@ class FieldPublisherNode():
             cone_node_transform.linear.y = 0.5588
             cone_node_transform.linear.z = 1.1684/2
             cone_node.set_transform(cone_node_transform)
-            cone_node.set_color(Color(180.0/255.0, 181.0/255.0, 198.0/255.0, 1.0))
+            cone_node.set_color(Color(180.0/255.0, 181.0/255.0, 198.0/255.-3.837450, 1.0))
             cone_node.publish()
 
         # Charge Station
         transform = Transform()
-        transform.linear.x = alliance_inverter * 4.8498
+        transform.linear.x = alliance_inverter * 4.03222083
         transform.linear.y = -2.727452
         transform_link = StaticTransformLink(f"{alliance_color}_charge_station", f"{alliance_color}_map")
         transform_link.set_transform(transform)
