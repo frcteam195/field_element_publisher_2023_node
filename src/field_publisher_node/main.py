@@ -3,6 +3,8 @@ import typing
 
 import rospy
 
+from field_publisher_node.field_elements.auto_link import publish_auto_1_transforms
+
 from ck_utilities_py_node.rviz_shapes import Color, Cube, Cylinder, Scale, Arrow
 from ck_utilities_py_node.transform_links import Transform, StaticTransformLink
 from frc_robot_utilities_py_node.RobotStatusHelperPy import Alliance
@@ -88,6 +90,8 @@ class FieldPublisherNode():
 
         self.build_starting_game_pieces(Alliance.RED, ["Cube", "Cone", "Cube", "Cube"])
         self.build_starting_game_pieces(Alliance.BLUE, ["Cone", "Cube", "Cube", "Cone"])
+
+        publish_auto_1_transforms()
 
         while not rospy.is_shutdown():
             rate.sleep()
