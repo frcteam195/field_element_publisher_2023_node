@@ -208,6 +208,18 @@ class FieldPublisherNode():
             transform_link.set_transform(transform)
             transform_link.publish()
 
+            transform_cone1 = Transform()
+            transform_cone1.linear.y = -0.5588
+            transform_cone1_link = StaticTransformLink(f"{alliance_color}_cone1_node{i}", f"{alliance_color}_cube_node{i}")
+            transform_cone1_link.set_transform(transform_cone1)
+            transform_cone1_link.publish()
+
+            transform_cone2 = Transform()
+            transform_cone2.linear.y = 0.5588
+            transform_cone2_link = StaticTransformLink(f"{alliance_color}_cone2_node{i}", f"{alliance_color}_cube_node{i}")
+            transform_cone2_link.set_transform(transform_cone2)
+            transform_cone2_link.publish()
+
             cube_node = Cube(f"{alliance_color}_cube_node{i}")
             cube_node.set_scale(Scale(alliance_inverter * -0.43, -0.46, -0.508))
             cube_node_transform = Transform()
